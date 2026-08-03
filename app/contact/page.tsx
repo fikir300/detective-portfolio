@@ -149,16 +149,21 @@ export default function ContactPage() {
           </div>
 
           {/* Download CV Block */}
-          <div className="border border-detective-ink/10 bg-black/40 p-8 flex justify-between items-center group cursor-pointer hover:bg-detective-ink/5 transition-colors">
-            <div className="flex-1">
-              <p className="text-[9px] opacity-40 uppercase font-bold mb-1 tracking-tighter">Declassified Document</p>
-              <h4 className="text-lg font-black font-typewriter uppercase tracking-tighter">Download Full Dossier</h4>
-              <p className="text-[10px] font-mono opacity-30 mt-1">curriculum_vitae_cipher.pdf — 2.4MB</p>
-            </div>
+          {/* Add this inside the left column, below the Threat Level */}
+<div className="mt-6 pt-4 border-t border-black/10">
+  <a 
+    href="/cv.pdf" 
+    target="_blank" // Opens in a new tab so they don't leave your site
+    className="flex items-center justify-center gap-2 bg-black text-[#f2e8cf] py-2 px-4 text-[10px] font-bold uppercase tracking-widest hover:bg-red-800 transition-colors"
+  >
+    <span>View Official Record</span>
+    <span className="text-xs">↗</span>
+  </a>
+</div>
             <div className="w-12 h-12 border border-detective-ink/30 rounded-full flex items-center justify-center group-hover:border-detective-ink group-hover:bg-detective-ink group-hover:text-black transition-all">
                <span className="text-xl">⊕</span>
             </div>
-          </div>
+          
 
           {/* Status Indicator */}
           <div className="bg-green-950/10 border border-green-500/20 p-6 flex gap-5 items-center">
