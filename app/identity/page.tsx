@@ -8,10 +8,10 @@ export default function IdentityPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         
         {/* LEFT COLUMN (Takes up 4 of 12 columns) */}
-        <div className="lg:col-span-4 space-y-8">
+        <div className="lg:col-span-4 flex justify-center lg:justify-start px-4 sm:px-0">
           
           {/* Dossier Card */}
-          <div className="bg-[#f2e8cf] text-black p-6 shadow-2xl relative transform -rotate-1 border border-black/10 w-full max-w-[350px] mx-auto lg:mx-0">
+          <div className="bg-[#f2e8cf] text-black p-6 shadow-2xl relative transform -rotate-1 border border-black/10 w-full max-w-[320px] sm:max-w-[350px]">
             
             {/* Folder Tab */}
             <div className="absolute -top-6 left-6 bg-[#d4c8a8] px-4 py-1 text-[10px] font-bold uppercase border-t border-l border-r border-black/20">

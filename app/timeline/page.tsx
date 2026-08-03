@@ -7,7 +7,7 @@ const events = [
     title: 'First Contact', 
     note: 'Subject encountered C++. Initial exposure deemed "addictive".', 
     side: 'left',
-    image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400&q=80' // Tech-y photo
+    image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400&q=80'
   },
   { 
     year: '2020', 
@@ -34,29 +34,31 @@ const events = [
 
 export default function Timeline() {
   return (
-    <div className="max-w-5xl mx-auto py-20 relative bg-black/20 rounded-xl px-4 overflow-hidden">
+    <div className="max-w-5xl mx-auto py-12 md:py-20 relative bg-black/20 rounded-xl px-4 overflow-hidden">
       
-      {/* 1. THE RED STRING (Visual improvement) */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-red-800/60 top-0 z-0 shadow-[0_0_10px_rgba(153,27,27,0.5)]"></div>
+      {/* 1. RESPONSIVE RED STRING */}
+      {/* Mobile: Pushed to the left (left-8) | Desktop: Centered (md:left-1/2) */}
+      <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-0.5 h-full bg-red-800/60 top-0 z-0 shadow-[0_0_10px_rgba(153,27,27,0.5)]"></div>
 
-      <div className="space-y-32 relative z-10">
+      <div className="space-y-16 md:space-y-32 relative z-10">
         {events.map((ev, index) => (
-          <div key={index} className={`flex items-center justify-between w-full ${ev.side === 'right' ? 'flex-row-reverse' : ''}`}>
+          /* Mobile: standard flex-row | Desktop: alternating sides */
+          <div key={index} className={`flex items-center w-full md:justify-between ${ev.side === 'right' ? 'md:flex-row-reverse' : 'flex-row'}`}>
             
-            {/* 2. THE POLAROID CARD (Smaller and prettier) */}
+            {/* 2. RESPONSIVE POLAROID CARD */}
             <motion.div 
-              initial={{ opacity: 0, x: ev.side === 'left' ? -40 : 40, rotate: ev.side === 'left' ? -2 : 2 }}
+              initial={{ opacity: 0, x: ev.side === 'left' ? -40 : 40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              whileHover={{ scale: 1.02, rotate: 0 }}
-              className="w-[38%] bg-[#f2e8cf] p-3 shadow-[10px_10px_30px_rgba(0,0,0,0.5)] relative border-b-8 border-black/10 group"
+              /* Mobile: takes most width (w-[85%]) | Desktop: stays smaller (w-[38%]) */
+              className="w-[85%] ml-12 md:ml-0 md:w-[38%] bg-[#f2e8cf] p-3 shadow-[10px_10px_30px_rgba(0,0,0,0.5)] relative border-b-4 md:border-b-8 border-black/10 group"
             >
-              {/* The "Pin" */}
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-4 h-4 bg-red-600 rounded-full shadow-lg border-2 border-black/20 z-20">
+              {/* Responsive Pin - Aligns with the string on mobile */}
+              <div className="absolute -top-4 left-[-28px] md:left-1/2 md:-translate-x-1/2 w-4 h-4 bg-red-600 rounded-full shadow-lg border-2 border-black/20 z-20">
                 <div className="w-1 h-1 bg-white/40 rounded-full ml-1 mt-1"></div>
               </div>
 
-              {/* Smaller Polaroid Image */}
-              <div className="bg-white p-2 shadow-inner mb-4 overflow-hidden aspect-video">
+              {/* Image Container */}
+              <div className="bg-white p-1.5 md:p-2 shadow-inner mb-3 md:mb-4 overflow-hidden aspect-video">
                 <img 
                   src={ev.image} 
                   alt={ev.title} 
@@ -64,36 +66,34 @@ export default function Timeline() {
                 />
               </div>
               
-              {/* Text Content */}
               <div className="px-1 pb-2">
                 <div className="flex justify-between items-center mb-1">
-                  <span className="font-mono text-[10px] text-red-800 font-black tracking-widest">{ev.year}</span>
-                  <span className="text-[8px] bg-black/5 px-1 uppercase font-bold text-black/40 tracking-tighter italic">Top Secret</span>
+                  <span className="font-mono text-[9px] md:text-[10px] text-red-800 font-black tracking-widest">{ev.year}</span>
+                  <span className="text-[7px] md:text-[8px] bg-black/5 px-1 uppercase font-bold text-black/40 tracking-tighter italic">Top Secret</span>
                 </div>
-                <h3 className="font-mono text-sm text-black font-black uppercase leading-tight border-b border-black/10 pb-1">{ev.title}</h3>
-                <p className="font-serif text-xl text-blue-900 mt-3 leading-tight italic tracking-tight opacity-90">
+                <h3 className="font-mono text-xs md:text-sm text-black font-black uppercase leading-tight border-b border-black/10 pb-1">{ev.title}</h3>
+                <p className="font-serif text-base md:text-xl text-blue-900 mt-2 md:mt-3 leading-tight italic tracking-tight opacity-90">
                   "{ev.note}"
                 </p>
               </div>
 
-              {/* Tape Effect (The "Pretty" detail) */}
-              <div className="absolute -top-3 -left-4 w-12 h-6 bg-white/20 backdrop-blur-md rotate-[-35deg] pointer-events-none shadow-sm border border-white/10"></div>
+              {/* Tape detail */}
+              <div className="absolute -top-3 -left-4 w-10 md:w-12 h-5 md:h-6 bg-white/20 backdrop-blur-md rotate-[-35deg] pointer-events-none"></div>
             </motion.div>
 
-            {/* Empty space for the other side */}
-            <div className="w-[38%] relative">
-               {/* Horizontal Connector String */}
+            {/* 3. CONNECTOR LINE - Hidden on mobile to save space */}
+            <div className="hidden md:block w-[38%] relative">
                <div className={`absolute top-0 h-[1px] bg-red-800/30 w-full ${ev.side === 'left' ? 'left-0' : 'right-0'}`}></div>
             </div>
           </div>
         ))}
       </div>
       
-      {/* Final Footer Section */}
-      <div className="mt-32 text-center">
-        <div className="inline-block border-2 border-red-700 p-6 bg-black/40 backdrop-blur-sm">
-           <h4 className="font-mono text-red-600 text-sm tracking-[0.4em] font-bold uppercase mb-2">Security Warning</h4>
-           <p className="font-mono text-[10px] text-detective-ink/60 uppercase">End of documented timeline — investigation status remains: <span className="text-green-500 font-bold">UNRESOLVED</span></p>
+      {/* Footer */}
+      <div className="mt-20 md:mt-32 text-center px-4">
+        <div className="inline-block border-2 border-red-700 p-4 md:p-6 bg-black/40 backdrop-blur-sm">
+           <h4 className="font-mono text-red-600 text-xs md:text-sm tracking-[0.3em] font-bold uppercase mb-2">Security Warning</h4>
+           <p className="font-mono text-[8px] md:text-[10px] text-detective-ink/60 uppercase">End of documented timeline — status: <span className="text-green-500 font-bold">UNRESOLVED</span></p>
         </div>
       </div>
     </div>

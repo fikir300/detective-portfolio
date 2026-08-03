@@ -54,7 +54,7 @@ export default function CaseBoard() {
 
         {/* Title & Warning */}
         <div className="text-center space-y-2 mb-12">
-            <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-detective-ink to-[#4a3a2b]">
+            <h1 className="text-5xl sm:text-7xl md:text-[100px] leading-[0.9] font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-detective-ink to-[#4a3a2b]">
               THE SUSPECT FILES
             </h1>
             <p className="font-mono text-[11px] tracking-[0.8em] text-detective-crimson font-bold uppercase animate-pulse">
