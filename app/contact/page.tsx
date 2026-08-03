@@ -160,10 +160,6 @@ export default function ContactPage() {
     <span className="text-xs">↗</span>
   </a>
 </div>
-            <div className="w-12 h-12 border border-detective-ink/30 rounded-full flex items-center justify-center group-hover:border-detective-ink group-hover:bg-detective-ink group-hover:text-black transition-all">
-               <span className="text-xl">⊕</span>
-            </div>
-          
 
           {/* Status Indicator */}
           <div className="bg-green-950/10 border border-green-500/20 p-6 flex gap-5 items-center">
